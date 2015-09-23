@@ -1,0 +1,19 @@
+# C and Fortran compilers
+CC=icc
+FC=ifort 
+
+# Compiler optimization flags.  You will definitely want to play with these!
+OPTFLAGS = -O2 -xSSE4.2 -static -ip -no-ipo
+CFLAGS = -std=gnu99 -g
+LDFLAGS = -fopenmp 
+
+# Add -DDEBUG_RUN to CPPFLAGS to cut down on the cases.
+CPPFLAGS = "-DCOMPILER=\"$(CC)\"" "-DFLAGS=\"$(OPTFLAGS)\""
+
+# Compile a C version (using basic_dgemm.c, in this case):
+LIBS = -lm -lirng
+OBJS = matmul.o
+
+# Libraries and include files for BLAS
+LIBBLAS=-lopenblas
+INCBLAS=
